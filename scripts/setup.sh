@@ -5,6 +5,8 @@ set -e
 source scripts/common.sh
 HERE_DIR="$(get_realpath $(dirname $(dirname "$0")))"
 
+echo $HERE_DIR
+
 echo "------------------------------- PlantCV Env Setup -------------------------------"
 
 VENV_PATH=$HERE_DIR/venv
@@ -16,13 +18,13 @@ if [ ! -d "$VENV_PATH" ]; then
     install_dependencies_linux
   fi
 
-  virtualenv --python=python2.7 $VENV_PATH
+  virtualenv --python=python3.6 $VENV_PATH
 
   if [ "Darwin" = "$os_type" ]; then
     echo "Only MacPorts for now. Need TODO on Brew"
-    echo 'export PYTHONPATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages' >> $VENV_PATH/bin/activate
+    echo 'export PYTHONPATH=/opt/local/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages' >> $VENV_PATH/bin/activate
   else
-    echo 'export PYTHONPATH=/usr/lib/python2.7/dist-packages' >> $VENV_PATH/bin/activate
+    echo 'export PYTHONPATH=/usr/lib/python3.6/dist-packages' >> $VENV_PATH/bin/activate
   fi
   
   source $VENV_PATH/bin/activate
